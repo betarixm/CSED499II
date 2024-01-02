@@ -1,0 +1,61 @@
+[tool.poetry]
+name = "CSED499II"
+version = "0.1.0"
+description = ""
+authors = ["Minjae Gwon <beta.underalpha@gmail.com>"]
+readme = "README.md"
+
+[[tool.poetry.packages]]
+include = "analyzer"
+from = "src"
+
+[[tool.poetry.packages]]
+include = "cli"
+from = "src"
+
+[[tool.poetry.packages]]
+include = "codeql"
+from = "src"
+
+[[tool.poetry.packages]]
+include = "dataset"
+from = "src"
+
+[[tool.poetry.packages]]
+include = "sarif"
+from = "src"
+
+[tool.poetry.scripts]
+analyze-codeql-dataset = 'cli.analyze_codeql_dataset:main'
+create-codeql-dataset = 'cli.create_codeql_dataset:main'
+evaluate = 'cli.evaluate:main'
+export-codes-with-vulnerable-line-annotation = 'cli.export_codes_with_vulnerable_line_annotation:main'
+prepare-dataset = 'cli.prepare_dataset:main'
+render-histogram-of-line-probabilities = 'cli.render_histogram_of_line_probabilities:main'
+render-roc = 'cli.render_roc:main'
+train = 'cli.train:main'
+
+[tool.poetry.dependencies]
+python = "^3.11"
+click = "^8.1.7"
+pydantic = "^2.4.2"
+transformers = "4.33.2"
+torch = "^2.1.0"
+tiktoken = "^0.5.1"
+matplotlib = "^3.8.0"
+accelerate = "^0.24.1"
+seaborn = "^0.13.0"
+datasets = "^2.15.0"
+peft = "^0.6.2"
+tensor-parallel = "^2.0.0"
+wandb = "^0.16.0"
+
+[tool.poetry.group.nvidia.dependencies]
+nvidia-cublas-cu12 = "^12.2.5.6"
+
+[tool.poetry.group.dev.dependencies]
+pyright = "^1.1.331"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
